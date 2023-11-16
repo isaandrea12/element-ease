@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import "./WeatherApp.css";
 import search_icon from "../../assets/search.png";
 import clear_icon from "../../assets/clear.png";
@@ -11,9 +13,14 @@ import wind_icon from "../../assets/wind.png";
 
 const WeatherApp = () => {
   let api_key = "78d878fa92c918700de10b569bd8132e";
-  const [cityInput, setCityInput] = useState("");
+  const [cityInput, setCityInput] = useState("New York");
   const [weatherData, setWeatherData] = useState(null);
   const [wIcon, setWIcon] = useState(cloud_icon);
+  const [alert, setAlert] = useState(false);
+
+  useEffect(() => {
+    search()
+  }, [])  
 
   const search = async () => {
     try {
@@ -21,10 +28,21 @@ const WeatherApp = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=imperial&appid=${api_key}`,
       );
       const data = await response.json();
-      console.log(data);
-      setWeatherData(data);
+      console.log(data) 
+     
+      if(data.cod === '404') {
+        setAlert(true);
+        setTimeout(() => {
+          setAlert(false);
+        }, 3000); // Hide alert after 3 seconds
+        return;
+      }
 
-      console.log(data.weather[0].icon);
+
+      if(data.cod === 200) {
+        console.log(data);
+        setWeatherData(data);
+
       if (data.weather[0].icon === "01d" || data.weather[0].icon === "01n") {
         setWIcon(clear_icon);
       } else if (
@@ -56,9 +74,11 @@ const WeatherApp = () => {
       } else {
         setWIcon(clear_icon);
       }
+    }
     } catch (error) {
       console.error("Error fetching weather data.");
     }
+
   };
 
   const handleKeyDown = (e) => {
@@ -68,65 +88,69 @@ const WeatherApp = () => {
   };
 
   return (
-    <div className="container">
-      <div className="search-bar">
-        <input
-          type="text"
-          onChange={(e) => {
-            setCityInput(e.target.value);
-          }}
-          onKeyDown={handleKeyDown}
-          className="cityInput"
-          placeholder="Search..."
-        />
-        <div
-          className="search-icon"
-          onClick={() => {
-            search();
-          }}
-        >
-          <img src={search_icon} alt="search icon" />
-        </div>
-      </div>
-      <div className="weather-img">
-        <img src={wIcon} alt="cloud icon" />
-      </div>
-      <div className="weather-temp">
-        {weatherData ? `${Math.round(weatherData.main.temp)}°F` : ""}
-      </div>
-      <div className="weather-location">
-        {weatherData ? `${weatherData.name}` : ""}
-      </div>
-      <div className="data-container">
-        <div className="element">
-          <img src={humidity_icon} alt="" className="icon" />
-          <div className="data">
-            <div className="humidity">
-              {weatherData ? `${weatherData.main.humidity}%` : ""}
+        <div>
+            <div className="alert">
+                {alert && <Alert variant="filled" severity="error">City not found.</Alert>}
             </div>
-            <div className="text">Humidity</div>
-          </div>
-        </div>
-        <div className="element">
-          <img src={wind_icon} alt="" className="icon" />
-          <div className="data">
-            <div className="wind">
-              {weatherData ? `${Math.round(weatherData.wind.speed)} mph` : ""}
+            <div className="container">
+              <div className="search-bar">
+                <input
+                  type="text"
+                  onChange={(e) => {
+                    setCityInput(e.target.value);
+                  }}
+                  onKeyDown={handleKeyDown}
+                  className="cityInput"
+                  placeholder="Search..."
+                />
+                <div
+                  className="search-icon"
+                  onClick={() => {
+                    search();
+                  }}
+                >
+                  <img src={search_icon} alt="search icon" />
+                </div>
+              </div>
+              <div className="weather-img">
+                <img src={wIcon} alt="cloud icon" />
+              </div>
+              <div className="weather-temp">
+                {weatherData ? `${Math.round(weatherData.main.temp)}°F` : ""}
+              </div>
+              <div className="weather-location">
+                {weatherData ? `${weatherData.name}` : ""}
+              </div>
+              <div className="data-container">
+                <div className="element">
+                  <img src={humidity_icon} alt="" className="icon" />
+                  <div className="data">
+                    <div className="humidity">
+                      {weatherData ? `${weatherData.main.humidity}%` : ""}
+                    </div>
+                    <div className="text">Humidity</div>
+                  </div>
+                </div>
+                <div className="element">
+                  <img src={wind_icon} alt="" className="icon" />
+                  <div className="data">
+                    <div className="wind">
+                      {weatherData ? `${Math.round(weatherData.wind.speed)} mph` : ""}
+                    </div>
+                    <div className="text">Wind Speed</div>
+                  </div>
+                </div>
+              </div>
+              <div className="data-container">
+                <div className="data">
+                  <div className="feels-like">
+                    {weatherData ? `${Math.round(weatherData.main.feels_like)}°F` : ""}
+                  </div>
+                  <div className="text">Feels like</div>
+                </div>
+              </div>
             </div>
-            <div className="text">Wind Speed</div>
-          </div>
         </div>
-      </div>
-
-      <div className="data-container">
-        <div className="data">
-          <div className="feels-like">
-            {weatherData ? `${Math.round(weatherData.main.feels_like)}°F` : ""}
-          </div>
-          <div className="text">Feels like</div>
-        </div>
-      </div>
-    </div>
   );
 };
 
