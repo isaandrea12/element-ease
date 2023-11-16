@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Alert from "@mui/material/Alert";
+import React, { useState } from "react";
 import "./WeatherApp.css";
 import search_icon from "../../assets/search.png";
 import clear_icon from "../../assets/clear.png";
