@@ -1,0 +1,25 @@
+.footer {
+  width: 200px;
+  border-radius: 30px;
+  background-color: #f8f9fe;
+  color: #797fbb;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.footer p {
+  margin: 15px;
+}
+
+.footer:hover {
+  background-color: #ededf7;
+}
+
+.containerLink {
+  text-decoration: none;
+  color: inherit;
+}
