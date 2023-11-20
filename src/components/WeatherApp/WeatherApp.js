@@ -31,6 +31,7 @@ const WeatherApp = () => {
 
   useEffect(() => {
     search();
+    // eslint-disable-next-line
   }, []);
 
   const search = async () => {
