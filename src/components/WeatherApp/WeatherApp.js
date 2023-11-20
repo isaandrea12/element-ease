@@ -3,6 +3,7 @@ import Alert from "@mui/material/Alert";
 import "./WeatherApp.css";
 import search_icon from "../../assets/search.png";
 import thermometer_icon from "../../assets/thermometer.png";
+import pressure_icon from "../../assets/pressure.png";
 import clear_icon from "../../assets/clear.png";
 import clear_n_icon from "../../assets/clear-n.png";
 import pclouds_icon from "../../assets/partial-clouds.png";
@@ -72,10 +73,8 @@ const WeatherApp = () => {
       }
 
       if (data.cod === 200) {
-        console.log(data);
         setWeatherData(data);
 
-        console.log(data.weather[0].icon);
         if (data.weather[0].icon === "01d") {
           setWIcon(clear_icon);
         } else if (data.weather[0].icon === "01n") {
@@ -130,7 +129,7 @@ const WeatherApp = () => {
   };
 
   const toCelsius = (fahrenheit) => {
-    return ((fahrenheit - 32) * 5) / 9;
+    return (Math.ceil((fahrenheit - 32) * 5) / 9);
   };
 
   return (
@@ -169,8 +168,8 @@ const WeatherApp = () => {
           {weatherData
             ? `${
                 isCelsius
-                  ? toCelsius(weatherData.main.temp)
-                  : Math.round(weatherData.main.temp)
+                  ? Math.ceil(toCelsius(weatherData.main.temp))
+                  : Math.ceil(weatherData.main.temp)
               }°${isCelsius ? "C" : "F"}`
             : ""}
         </div>
@@ -202,11 +201,26 @@ const WeatherApp = () => {
             <img src={thermometer_icon} alt="" className="icon" />
             <div className="data">
               <div className="feels-like">
-                {weatherData
-                  ? `${Math.round(weatherData.main.feels_like)}°F`
-                  : ""}
+              {weatherData
+            ? `${
+                isCelsius
+                  ? Math.ceil(toCelsius(weatherData.main.feels_like))
+                  : Math.ceil(weatherData.main.feels_like)
+              }°${isCelsius ? "C" : "F"}`
+            : ""}
               </div>
               <div className="text">Feels like</div>
+            </div>
+          </div>
+          <div className="element">
+            <img src={pressure_icon} alt="" className="icon" />
+            <div className="data">
+              <div className="feels-like">
+                {weatherData
+                  ? `${(weatherData.main.pressure)} hPa`
+                  : ""}
+              </div>
+              <div className="text">Pressure</div>
             </div>
           </div>
         </div>
