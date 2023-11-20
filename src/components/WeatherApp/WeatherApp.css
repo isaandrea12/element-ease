@@ -1,10 +1,10 @@
 .container {
-  width: 600px;
-  height: 900px;
+  width: 400px;
+  height: 650px;
   margin: auto;
-  margin-top: 55px;
-  margin-bottom: 75px;
-  border-radius: 25px;
+  margin-top: 25px;
+  margin-bottom: 55px;
+  border-radius: 15px;
   background-image: linear-gradient(180deg, #130754 0%, #3b2f80 100%);
 }
 
@@ -12,20 +12,20 @@
   display: flex;
   justify-content: center;
   gap: 14px;
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 .search-bar input {
   display: flex;
-  width: 350px;
-  height: 80px;
+  width: 250px;
+  height: 50px;
   background-color: #ebfffc;
   border: none;
   outline: none;
   border-radius: 40px;
-  padding-left: 40px;
+  padding-left: 30px;
   color: #626262;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -33,15 +33,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   background-color: #ebfffc;
   border-radius: 40px;
   cursor: pointer;
 }
 
 .weather-img {
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -50,7 +50,7 @@
   display: flex;
   justify-content: center;
   color: white;
-  font-size: 120px;
+  font-size: 80px;
   font-weight: 400;
 }
 
@@ -58,12 +58,13 @@
   display: flex;
   justify-content: center;
   color: white;
-  font-size: 60px;
+  font-size: 36px;
   font-weight: 400;
+  padding-bottom: 20px;
 }
 
 .data-container {
-  margin-top: 50px;
+  margin-top: 25px;
   color: white;
   display: flex;
   justify-content: center;
@@ -73,31 +74,27 @@
   margin: auto;
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 4px;
 }
 
 .data {
-  font-size: 34px;
+  font-size: 26px;
   font-weight: 400;
 }
 
 .text {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 400;
 }
 
-.icon {
-  margin-top: 10px;
-}
-
 .alert {
-    display: inline-block;
-    width: 30%;
-    padding-top: 20px;
+  display: inline-block;
+  width: 50%;
+  padding-top: 20px;
 }
 
 .smaller-icon {
-    width: 170px;
-    height: auto;
-    padding: 35px;
+  width: 120px;
+  height: auto;
+  padding: 35px;
 }
