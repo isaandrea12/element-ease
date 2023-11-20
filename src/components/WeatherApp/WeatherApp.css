@@ -1,6 +1,6 @@
 .container {
   width: 600px;
-  height: 850px;
+  height: 900px;
   margin: auto;
   margin-top: 55px;
   margin-bottom: 75px;
@@ -90,12 +90,14 @@
   margin-top: 10px;
 }
 
-.feels-like .text {
-  padding-bottom: 300px;
-}
-
 .alert {
     display: inline-block;
     width: 30%;
     padding-top: 20px;
+}
+
+.smaller-icon {
+    width: 170px;
+    height: auto;
+    padding: 35px;
 }

@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
 import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
 import "./WeatherApp.css";
 import search_icon from "../../assets/search.png";
 import clear_icon from "../../assets/clear.png";
-import cloud_icon from "../../assets/cloud.png";
-import drizzle_icon from "../../assets/drizzle.png";
+import clear_n_icon from "../../assets/clear-n.png";
+import pclouds_icon from "../../assets/partial-clouds.png";
+import pclouds_n_icon from "../../assets/partial-clouds-n.png";
+import cloudy_icon from "../../assets/cloudy.png";
+import cloudy_n_icon from "../../assets/cloudy-n.png";
 import humidity_icon from "../../assets/humidity.png";
+import shower_icon from "../../assets/shower.png";
+import shower_n_icon from "../../assets/shower-n.png";
 import rain_icon from "../../assets/rain.png";
+import rain_n_icon from "../../assets/rain-n.png";
+import thunder_icon from "../../assets/thunder.png";
+import thunder_n_icon from "../../assets/thunder-n.png";
 import snow_icon from "../../assets/snow.png";
+import snow_n_icon from "../../assets/snow-n.png";
+import mist_icon from "../../assets/mist.png";
+import mist_n_icon from "../../assets/mist-n.png";
 import wind_icon from "../../assets/wind.png";
 
 const WeatherApp = () => {
   let api_key = "78d878fa92c918700de10b569bd8132e";
   const [cityInput, setCityInput] = useState("New York");
   const [weatherData, setWeatherData] = useState(null);
-  const [wIcon, setWIcon] = useState(cloud_icon);
+  const [wIcon, setWIcon] = useState(cloudy_icon);
   const [alert, setAlert] = useState(false);
 
   useEffect(() => {
@@ -43,35 +53,85 @@ const WeatherApp = () => {
         console.log(data);
         setWeatherData(data);
 
-      if (data.weather[0].icon === "01d" || data.weather[0].icon === "01n") {
+
+      console.log(data.weather[0].icon)
+      if (data.weather[0].icon === "01d") {
         setWIcon(clear_icon);
-      } else if (
-        data.weather[0].icon === "02d" ||
-        data.weather[0].icon === "02n" ||
-        data.weather[0].icon === "03d" ||
-        data.weather[0].icon === "03n" ||
-        data.weather[0].icon === "04d" ||
-        data.weather[0].icon === "04n"
+      } 
+      else if (data.weather[0].icon === "01n") {
+        setWIcon(clear_n_icon)
+      }
+      else if (
+        data.weather[0].icon === "02d"
       ) {
-        setWIcon(cloud_icon);
-      } else if (
-        data.weather[0].icon === "09d" ||
+        setWIcon(pclouds_icon);
+      } 
+      else if (
+        data.weather[0].icon === "02n"
+      ) {
+        setWIcon(pclouds_n_icon);
+      } 
+      else if (
+        data.weather[0].icon === "03d" || data.weather[0].icon === "04d"
+      ) {
+        setWIcon(cloudy_icon);
+      } 
+      else if (
+        data.weather[0].icon === "03n" || data.weather[0].icon === "04n"
+      ) {
+        setWIcon(cloudy_n_icon);
+      } 
+      else if (
+        data.weather[0].icon === "09d"
+      ) {
+        setWIcon(shower_icon);
+      } 
+      else if (
         data.weather[0].icon === "09n"
       ) {
-        setWIcon(drizzle_icon);
-      } else if (
-        data.weather[0].icon === "10d" ||
-        data.weather[0].icon === "10n" ||
-        data.weather[0].icon === "11d" ||
-        data.weather[0].icon === "11n"
+        setWIcon(shower_n_icon);
+      } 
+      else if (
+        data.weather[0].icon === "10d"
       ) {
         setWIcon(rain_icon);
-      } else if (
-        data.weather[0].icon === "13d" ||
-        data.weather[0].icon === "13n"
+      } 
+      else if (
+        data.weather[0].icon === "10n"
+      ) {
+        setWIcon(rain_n_icon);
+      } 
+      else if (
+        data.weather[0].icon === "11d"
+      ) {
+        setWIcon(thunder_icon);
+      } 
+      else if (
+        data.weather[0].icon === "11n"
+      ) {
+        setWIcon(thunder_n_icon);
+      } 
+      else if (
+        data.weather[0].icon === "12d"
       ) {
         setWIcon(snow_icon);
-      } else {
+      } 
+      else if (
+        data.weather[0].icon === "12n"
+      ) {
+        setWIcon(snow_n_icon);
+      } 
+      else if (
+        data.weather[0].icon === "13d"
+      ) {
+        setWIcon(mist_icon);
+      } 
+      else if (
+        data.weather[0].icon === "13n"
+      ) {
+        setWIcon(mist_n_icon);
+      } 
+      else {
         setWIcon(clear_icon);
       }
     }
@@ -113,7 +173,7 @@ const WeatherApp = () => {
                 </div>
               </div>
               <div className="weather-img">
-                <img src={wIcon} alt="cloud icon" />
+                <img src={wIcon} alt="cloud icon" className="smaller-icon" />
               </div>
               <div className="weather-temp">
                 {weatherData ? `${Math.round(weatherData.main.temp)}°F` : ""}
@@ -142,7 +202,7 @@ const WeatherApp = () => {
                 </div>
               </div>
               <div className="data-container">
-                <div className="data">
+                <div className="data-feels-like">
                   <div className="feels-like">
                     {weatherData ? `${Math.round(weatherData.main.feels_like)}°F` : ""}
                   </div>
