@@ -28,6 +28,27 @@ const WeatherApp = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [wIcon, setWIcon] = useState(cloudy_icon);
   const [alert, setAlert] = useState(false);
+  const [isCelsius, setIsCelsius] = useState(
+    Boolean(localStorage.getItem("celsius")),
+  );
+
+  useEffect(() => {
+    const storedCelsius = localStorage.getItem("celsius") || "false";
+    localStorage.setItem(
+      "celsius",
+      storedCelsius === "false" ? "true" : "false",
+    );
+    setIsCelsius(JSON.parse(storedCelsius));
+  }, []);
+
+  const toggleCelsius = () => {
+    const storedCelsius = localStorage.getItem("celsius") || "false";
+    localStorage.setItem(
+      "celsius",
+      storedCelsius === "false" ? "true" : "false",
+    );
+    setIsCelsius(JSON.parse(storedCelsius));
+  };
 
   useEffect(() => {
     search();
@@ -108,6 +129,10 @@ const WeatherApp = () => {
     }
   };
 
+  const toCelsius = (fahrenheit) => {
+    return ((fahrenheit - 32) * 5) / 9;
+  };
+
   return (
     <div>
       <div className="alert">
@@ -141,7 +166,13 @@ const WeatherApp = () => {
           <img src={wIcon} alt="cloud icon" className="smaller-icon" />
         </div>
         <div className="weather-temp">
-          {weatherData ? `${Math.round(weatherData.main.temp)}°F` : ""}
+          {weatherData
+            ? `${
+                isCelsius
+                  ? toCelsius(weatherData.main.temp)
+                  : Math.round(weatherData.main.temp)
+              }°${isCelsius ? "C" : "F"}`
+            : ""}
         </div>
         <div className="weather-location">
           {weatherData ? `${weatherData.name}` : ""}
@@ -178,6 +209,16 @@ const WeatherApp = () => {
               <div className="text">Feels like</div>
             </div>
           </div>
+        </div>
+        <div className="toggle-container">
+          <label className="toggle-switch">
+            <input
+              type="checkbox"
+              checked={isCelsius}
+              onChange={toggleCelsius}
+            />
+            <span className="switch" />
+          </label>
         </div>
       </div>
     </div>
