@@ -129,20 +129,19 @@ const WeatherApp = () => {
   };
 
   const toCelsius = (fahrenheit) => {
-    return (Math.ceil((fahrenheit - 32) * 5) / 9);
+    return Math.ceil((fahrenheit - 32) * 5) / 9;
   };
 
   return (
     <div>
-      
       <div className="container">
-      <div className="alert">
-        {alert && (
-          <Alert variant="filled" severity="error">
-            City not found.
-          </Alert>
-        )}
-      </div>
+        <div className="alert">
+          {alert && (
+            <Alert variant="filled" severity="error">
+              City not found.
+            </Alert>
+          )}
+        </div>
         <div className="search-bar">
           <input
             type="text"
@@ -202,13 +201,13 @@ const WeatherApp = () => {
             <img src={thermometer_icon} alt="" className="icon" />
             <div className="data">
               <div className="feels-like">
-              {weatherData
-            ? `${
-                isCelsius
-                  ? Math.ceil(toCelsius(weatherData.main.feels_like))
-                  : Math.ceil(weatherData.main.feels_like)
-              }°${isCelsius ? "C" : "F"}`
-            : ""}
+                {weatherData
+                  ? `${
+                      isCelsius
+                        ? Math.ceil(toCelsius(weatherData.main.feels_like))
+                        : Math.ceil(weatherData.main.feels_like)
+                    }°${isCelsius ? "C" : "F"}`
+                  : ""}
               </div>
               <div className="text">Feels like</div>
             </div>
@@ -217,15 +216,14 @@ const WeatherApp = () => {
             <img src={pressure_icon} alt="" className="icon" />
             <div className="data">
               <div className="feels-like">
-                {weatherData
-                  ? `${(weatherData.main.pressure)} hPa`
-                  : ""}
+                {weatherData ? `${weatherData.main.pressure} hPa` : ""}
               </div>
               <div className="text">Pressure</div>
             </div>
           </div>
         </div>
         <div className="toggle-container">
+          <div className="left-element">°F</div>
           <label className="toggle-switch">
             <input
               type="checkbox"
@@ -234,6 +232,7 @@ const WeatherApp = () => {
             />
             <span className="switch" />
           </label>
+          <div className="right-element">°C</div>
         </div>
       </div>
     </div>
