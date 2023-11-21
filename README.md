@@ -1,6 +1,9 @@
 # Preview
 <img width="443" alt="Screen Shot 2023-11-21 at 4 48 13 PM" src="https://github.com/isaandrea12/element-ease/assets/42812509/54cb7d10-5480-400b-a86a-3098c8437cf7">
 
+# Demo: Deployed using Netlify
+[https://element-ease.netlify.app/](https://element-ease.netlify.app/)
+
 # To Run:
 ```
 npm i
