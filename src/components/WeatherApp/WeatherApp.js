@@ -34,7 +34,7 @@ const WeatherApp = () => {
   );
 
   useEffect(() => {
-    const storedCelsius = localStorage.getItem("celsius") || "false";
+    const storedCelsius = localStorage.getItem("celsius");
     localStorage.setItem(
       "celsius",
       storedCelsius === "false" ? "true" : "false",
@@ -43,7 +43,7 @@ const WeatherApp = () => {
   }, []);
 
   const toggleCelsius = () => {
-    const storedCelsius = localStorage.getItem("celsius") || "false";
+    const storedCelsius = localStorage.getItem("celsius");
     localStorage.setItem(
       "celsius",
       storedCelsius === "false" ? "true" : "false",
