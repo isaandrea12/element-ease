@@ -134,6 +134,8 @@ const WeatherApp = () => {
 
   return (
     <div>
+      
+      <div className="container">
       <div className="alert">
         {alert && (
           <Alert variant="filled" severity="error">
@@ -141,7 +143,6 @@ const WeatherApp = () => {
           </Alert>
         )}
       </div>
-      <div className="container">
         <div className="search-bar">
           <input
             type="text"

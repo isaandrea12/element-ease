@@ -180,3 +180,12 @@
     color: #fff; /* Change the text color when the switch is checked */
   }
   
+  @media (max-width: 768px) {
+    .container {
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
+  } 
