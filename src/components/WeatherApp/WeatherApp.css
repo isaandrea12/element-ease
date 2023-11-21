@@ -101,12 +101,12 @@
 
 /* Toggle Switch */
 .left-element {
-    padding-left: 90px;
+    padding-left: 110px;
     color: white;
 }
 
 .right-element {
-    padding-right: 90px;
+    padding-right: 110px;
     color: white;
 }
 
@@ -116,7 +116,6 @@
 
 .toggle-container {
   padding-top: 25px;
-  padding-right: 40px;
   display: flex;
   justify-content: space-around;
 }
