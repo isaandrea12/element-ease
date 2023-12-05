@@ -62,7 +62,6 @@ const WeatherApp = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=imperial&appid=${api_key}`,
       );
       const data = await response.json();
-      console.log(data);
 
       if (data.cod === "404") {
         setAlert(true);

@@ -11,7 +11,7 @@ const Footer = () => {
           <p>
             &copy;{currentYear}{" "}
             <a
-              href="https://github.com/isaandrea12/ToDoList"
+              href="https://github.com/isaandrea12/element-ease"
               className="containerLink"
               target="_blank"
               rel="noreferrer"
